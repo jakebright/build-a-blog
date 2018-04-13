@@ -23,10 +23,36 @@ class Blog(db.Model):
 
 
 
+
 @app.route('/blog', methods=['POST', 'GET'])
 def display_all_posts():
     #import pdb; pdb.set_trace()
+    has_errors = False
+    
     if request.method == 'POST':
+        title = request.form['title']
+        body = request.form['body']
+
+        title_error = ''
+        body_error = ''
+
+        if len(title) == 0:
+            title_error = 'There must be content'
+            title = ''
+
+            has_errors = True
+
+        if len(body) == 0:
+            body_error = 'There must be content'
+            body = ''
+
+            has_errors = True
+
+        if has_errors == True:
+
+            return render_template('newpost.html', title_error=title_error, 
+                body_error=body_error, form=request.form)
+
         blog = Blog(request.form['title'], request.form['body'])
         db.session.add(blog)
         db.session.commit()
@@ -47,7 +73,7 @@ def add_post():
 @app.route('/', methods =['POST' , 'GET'])
 def index():
     return redirect('/blog')
-
+    #return render_template('singlepage.html')
 
 if __name__ == '__main__':
     app.run()
