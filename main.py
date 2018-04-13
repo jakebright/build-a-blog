@@ -39,23 +39,10 @@ def display_all_posts():
         return render_template('blog.html', title='build-a-blog', blogs=blogs)
   
 
-@app.route('/add_post', methods=['GET'])
+@app.route('/newpost', methods=['GET'])
 def add_post():  
-    #if request.method == 'POST':
-     #   title = request.form['title']
-      #  body = request.form['body']
-       # blog = Blog(title, body)
-        #db.session.add(blog)
-        #db.session.commit()
-
-
-    return render_template('newpost.html')
-
-@app.route('/newpost', methods=['POST'])
-def new_post():
     
-
-    return redirect('/')
+    return render_template('newpost.html')
 
 @app.route('/', methods =['POST' , 'GET'])
 def index():
