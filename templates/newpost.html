@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<center><h1>New Blog Post</h1></center>
+
+<form method='post' action='/blog'>
+        <label>
+            Blog Title:
+        </br>
+            <input id='title' type='text' name='title' />
+        </label> 
+</br>
+</br>
+<hr />
+</br>
+    <label>
+        New Blog Post:
+    </br>
+        <textarea rows='4' cols='50' id= 'body' type='text' name='body'></textarea>
+    </br>   
+        <input type='submit' value='Add Blog Entry' />
+
+    </label>
+</form>
+
+<ul>
+{% for blog in blogs %}
+<li>{{blog.title}} 
+    <!--<form method='post' action='/blog' style='display:inline-block;'>
+        <input type='hidden' name='blog-id' value='{{blog.id}}' />
+    </form>-->
+</li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}
