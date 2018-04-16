@@ -59,7 +59,7 @@ def display_all_posts():
         if has_errors == True:
 
             return render_template('newpost.html', title_error=title_error, 
-                body_error=body_error)      #, form=request.form
+                body_error=body_error, form=request.form, title=title, body=body)      #, form=request.form
 
         blog = Blog(request.form['title'], request.form['body'])
         db.session.add(blog)
